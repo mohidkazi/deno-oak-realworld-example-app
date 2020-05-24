@@ -1,0 +1,9 @@
+#env variables
+.env
+
+#static assets
+/public
+/views
+
+#config file
+config.json
