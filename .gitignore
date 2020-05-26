@@ -5,5 +5,7 @@
 /public
 /views
 
-#config file
-config.json
+#helper file
+BACKEND_INSTRUCTIONS.md
+garbage.txt
+run-api-tests.sh
