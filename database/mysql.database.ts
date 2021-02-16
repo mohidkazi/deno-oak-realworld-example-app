@@ -1,4 +1,5 @@
 import { Client } from "https://deno.land/x/mysql/mod.ts";
+import env from "../config.ts";
 
 /** class to connect to mysql instance */
 class MySqlConnector {
@@ -19,10 +20,10 @@ class MySqlConnector {
      */
     /* pass mysql credentials */
     await this.client.connect({
-      hostname: "127.0.0.1",
-      username: "root",
-      db: "dbname",
-      password: "password",
+      hostname: env.MYSQL_HOSTNAME,
+      db: env.MYSQL_DATABASE,
+      username: env.MYSQL_USERNAME,
+      password: env.MYSQL_PASSWORD,
     });
   }
 }

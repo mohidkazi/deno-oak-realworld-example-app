@@ -1,18 +1,24 @@
-import {
-  Context,
-} from "https://deno.land/x/oak/mod.ts";
-
-
+import { Context } from "https://deno.land/x/oak/mod.ts";
+import client from "../../../database/mysql.database.ts";
 class AuthController {
   constructor() {}
 
   public async getAuth(ctx: Context): Promise<void> {
+    const articles = await client
+      .query(`SELECT 
+                  a.*,
+                  u.*
+                FROM test.article as a
+                INNER JOIN test.user as u
+                  ON u.id=a.authorId;`);
     try {
-      // ctx.response.status = 401;
-      ctx.response.body = "nothing happened";
+      ctx.response.body = {
+        articles: articles,
+        articlesCount: articles.length,
+      };
     } catch (error) {
-      // ctx.response.status = 403;
-      // ctx.response.body = 'something unexpected happened here'
+      // ctx.response.status = 400;
+      // ctx.response.body = 'Something went wrong';
     }
   }
 }

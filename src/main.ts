@@ -10,5 +10,5 @@ app.use(router.allowedMethods());
 console.log("server running on port ", env.PORT);
 
 (
-    async () => await app.listen({ port: Number(env.PORT) })
+  async () => await app.listen({ port: Number(env.PORT) })
 )();
