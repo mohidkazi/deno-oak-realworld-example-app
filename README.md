@@ -58,3 +58,8 @@ More information regarding the project can be found here https://github.com/goth
 `.env` - Environment variables can be set in this file
 
 Note : You can quickly set the database information and other variables in this file and have the application fully working.
+
+# Database Schema
+![mysql database schema](realworld_db_schema.png)
+
+along with the above diagram, i have also added the xml file using which you can edit above diagram [here](https://app.diagrams.net/) 
