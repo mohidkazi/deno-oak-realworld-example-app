@@ -46,3 +46,15 @@ For more information on how to this works with other frontends/backends, head ov
 
 > npm install, npm start, etc.
 
+## API Specification
+
+This application adheres to the api specifications set by the [Thinkster](https://github.com/gothinkster) team. This helps mix and match any backend with any other frontend without conflicts.
+
+> [Full API Spec](https://github.com/gothinkster/realworld/tree/master/api)
+
+More information regarding the project can be found here https://github.com/gothinkster/realworld
+
+## Environment variables
+`.env` - Environment variables can be set in this file
+
+Note : You can quickly set the database information and other variables in this file and have the application fully working.
