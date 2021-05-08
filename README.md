@@ -40,7 +40,8 @@ start the server
 note - you can use `denon` to start the server in watch mode, check [here](https://deno.land/x/denon@2.4.7) on how to install denon on your system.
 to install denon
 > deno install -qAf --unstable https://x.nest.land/denon@VERSION/denon.ts
-note - please make sure you provide the `VERSION`, else it may throw an error.
+
+note- make sure you provide the `VERSION`, else it may throw an error.
 
 to start the server using denon, use following command
 > denon run --allow-net --allow-read --allow-env --unstable src/main.ts
