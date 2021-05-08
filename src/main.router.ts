@@ -3,6 +3,7 @@ import AuthController from "./auth/controller/auth.controller.ts";
 
 const router = new Router();
 
-router.get("/api/:id", AuthController.getAuth);
+router.get("/ping", async ({ response }) => { response.body = 'pong'; });
+router.post("/api", AuthController.register);
 
 export default router;
