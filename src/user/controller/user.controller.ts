@@ -21,7 +21,7 @@ class UserController {
         or again fetch authUser detail from database and return the user */
       // ctx.response.body = { authUser };
       const { rows: user } = await client.execute(
-        `SELECT * FROM users WHERE email = ? LIMIT 1`,
+        `SELECT * FROM user WHERE email = ? LIMIT 1`,
         [authUser.email],
       );
       if (!user || !user.length) {
@@ -55,7 +55,7 @@ class UserController {
       if (
         !payload.username && !payload.email && !payload.bio && !payload.image
       ) {
-        throw new Error("Atleast 1 injectorField is required.");
+        throw new Error("Atleast 1 field is required.");
       }
 
       // fields contain array of key and value e.g ['id', 1, 'email', 'xyz']
@@ -70,7 +70,7 @@ class UserController {
       const injectorField = Array(fields.length / 2).fill(" ?? = ?").join(",");
 
       const { affectedRows: update } = await client.execute(
-        `UPDATE users SET ${injectorField} WHERE email = ?`,
+        `UPDATE user SET ${injectorField} WHERE email = ?`,
         [...fields, authUser.email],
       );
       if (!update || !(update > 0)) {
@@ -78,7 +78,7 @@ class UserController {
       }
 
       const { rows: user } = await client.execute(
-        `SELECT * FROM users WHERE email = ? LIMIT 1`,
+        `SELECT * FROM user WHERE email = ? LIMIT 1`,
         [authUser.email],
       );
       if (!user || !user.length) {

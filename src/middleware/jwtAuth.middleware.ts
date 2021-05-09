@@ -19,7 +19,7 @@ class JwtAuthMiddleware {
 
       const payload = await verify(token, env.JWT_SECRET, "HS512");
       const { rows: user } = await client.execute(
-        `SELECT * FROM users WHERE email = ? AND username = ? LIMIT 1`,
+        `SELECT * FROM user WHERE email = ? AND username = ? LIMIT 1`,
         [payload.email, payload.username],
       );
       if (!user || !user.length) {

@@ -86,7 +86,7 @@ class AuthController {
       }
 
       const { rows: user } = await client.execute(
-        `SELECT * FROM users WHERE email = ? LIMIT 1`,
+        `SELECT * FROM user WHERE email = ? LIMIT 1`,
         [email],
       );
       if (!user || !user.length) {
