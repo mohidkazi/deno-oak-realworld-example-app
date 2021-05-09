@@ -36,6 +36,7 @@ class JwtAuthMiddleware {
       };
     }
     await next();
+    return;
   };
 }
 

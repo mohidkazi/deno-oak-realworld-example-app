@@ -19,19 +19,31 @@ class ProfileController {
         return;
       }
 
-      const { rows: profile } = await client.execute(
-        `SELECT * FROM user username = ? INNER JOIN follows ON follows.followerId = user.id LIMIT 1`,
-        [username],
-      );
-      if (!profile || !profile.length) {
+      const fields = [];
+      let injectField = "SELECT * FROM user WHERE username = ? LIMIT 1";
+      if (ctx.user) {
+        fields.push(ctx.user.id);
+        injectField =
+          "SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followerId = user.id AND id = ? WHERE username = ? GROUP BY user.id LIMIT 1";
+      }
+
+      const { rows } = await client.execute(injectField, [
+        ...fields,
+        username,
+      ]);
+
+      if (!rows || !rows.length) {
         throw new Error("peofile not found.");
       }
 
+      const profile = {
+        ...rows[0],
+        following: rows[0]?.count ? true : false,
+      };
+
       ctx.response.status = 200;
       ctx.response.headers.set("Content-Type", "application/json");
-      ctx.response.body = JSON.stringify({
-        profile: profile[0],
-      });
+      ctx.response.body = JSON.stringify({ profile });
     } catch (error) {
       console.log(error);
       ctx.response.status = 400;
@@ -41,6 +53,9 @@ class ProfileController {
       };
     }
   };
+
+  follow = async (ctx: Context): Promise<void> => {};
+  unFollow = async (ctx: Context): Promise<void> => {};
 }
 
 export default new ProfileController();
