@@ -1,14 +1,14 @@
 # ![RealWorld Example App](logo.png)
 
-> ## Deno/oak codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API
+> ## Deno & oak codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API
 
 ### [Demo](https://github.com/gothinkster/realworld) [RealWorld](https://github.com/gothinkster/realworld)
 
 This codebase was created to demonstrate a fully fledged fullstack application
-built with **Deno/oak** including CRUD operations, authentication, routing,
+built with [Deno](https://deno.land/) & [oak](https://github.com/oakserver/oak) including CRUD operations, authentication, routing,
 pagination, and more.
 
-We've gone to great lengths to adhere to the **Deno/oak** community styleguides
+We've gone to great lengths to adhere to the [Deno](https://deno.land/) & [oak](https://github.com/oakserver/oak) community styleguides
 & best practices.
 
 For more information on how to this works with other frontends/backends, head
@@ -23,16 +23,22 @@ over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 ├── src/
     ├── main.ts                // this is the starting point of the application
     ├── main.router.ts         // all api routes are defined here
+    ├── middleware/            // contains middleware files for jwt validation, etc
+        ├── jwtAuth.middleware.ts
+    ├── types                  // contains global types & interface along module augmentation
     ├── auth/                  // handle authentication and authorization
-    │   ├── interface/         // contains dto and interface
-    │   │   └── auth.interfacet.ts
+    │   ├── types/             // contains types & interface
+    │   │   └── auth.type.ts
     │   ├── controller/        // handle request & response
     │   │   └── auth.controller.ts
     │   ├── service/           // business logic
     │   │   └── auth.service.ts
+    │   ├── validator/         // contains payload validations
+    │   │   └── auth.validator.ts    
     │   └── repository/        // CRUD operations
     │       └── auth.repository.ts
-    ├── profile/               // handle user related workload
+    ├── profile/               // handle profile related workload
+    ├── user/                  // handle user related workload
 ```
 
 ## Getting started
