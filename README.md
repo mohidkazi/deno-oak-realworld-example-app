@@ -16,19 +16,19 @@ For more information on how to this works with other frontends/backends, head ov
 ├── config.ts
 ├── .env
 ├── .env.example
-├── src
+├── src/
     ├── main.ts                // this is the starting point of the application
-    ├── main.router.ts         // defines routed
-    ├── auth                   // handle authentication and authorization
-    │   ├── interface          // contains dto and interface
+    ├── main.router.ts         // all api routes are defined here
+    ├── auth/                  // handle authentication and authorization
+    │   ├── interface/         // contains dto and interface
     │   │   └── auth.interfacet.ts
-    │   ├── controller         // handle request & response
+    │   ├── controller/        // handle request & response
     │   │   └── auth.controller.ts
-    │   ├── service            // business logic
+    │   ├── service/           // business logic
     │   │   └── auth.service.ts
-    │   └── repository         // CRUD operations
+    │   └── repository/        // CRUD operations
     │       └── auth.repository.ts
-    ├── profile                   // handle user related workload
+    ├── profile/               // handle user related workload
     
 ```
 
