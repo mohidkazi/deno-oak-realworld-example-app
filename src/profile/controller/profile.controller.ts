@@ -25,7 +25,7 @@ class ProfileController {
       if (ctx.user) {
         fields.push(ctx.user.id);
         injectField =
-          `SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followingId = user.id AND follows.followerI = ? WHERE username = ? GROUP BY user.id LIMIT 1`;
+          `SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followingId = user.id AND follows.followingId = ? WHERE username = ? GROUP BY user.id LIMIT 1`;
       }
 
       const { rows } = await client.execute(injectField, [
@@ -74,7 +74,7 @@ class ProfileController {
       }
 
       const { rows: user } = await client.execute(
-        `SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followingId = user.id AND follows.followerId = ? WHERE username = ? GROUP BY user.id LIMIT 1`,[authUser.id, username]
+        `SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followingId = user.id AND follows.followingId = ? WHERE username = ? GROUP BY user.id LIMIT 1`,[authUser.id, username]
       );
       if (!user || !user.length) {
         throw new Error("User not found.");
@@ -131,7 +131,7 @@ class ProfileController {
       }
 
       const { rows: user } = await client.execute(
-        `SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followingId = user.id AND follows.followerId = ? WHERE username = ? GROUP BY user.id LIMIT 1`,[authUser.id, username]
+        `SELECT user.*, count(follows.id) AS count FROM user LEFT JOIN follows ON follows.followingId = user.id AND follows.followingId = ? WHERE username = ? GROUP BY user.id LIMIT 1`,[authUser.id, username]
       );
       if (!user || !user.length) {
         throw new Error("User not found.");
